@@ -1,0 +1,22 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    container_name: dev_db
+    hostname: postgres
+    env_file:
+      - .env.database
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - db_network
+    restart: always
+
+volumes:
+  postgres:
+
+networks: 
+  db_network:
+    driver: bridge
